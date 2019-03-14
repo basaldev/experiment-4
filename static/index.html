@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Main</title>
+  <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="./main.js"></script>
+</head>
+<body>
+  <a-scene inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
+    <a-sphere id="left" position="-2.27051 2.4115 -3.97117" rotation="0 45 0" color="#4CC3D9" collider-check raycaster="objects: #box; near: 5;"></a-sphere>
+    <a-sphere id="right" position="2.58638 2.42109 -4.00709" radius="1.25" color="#EF2D5E" collider-check raycaster="objects: #box;"></a-sphere>
+    <a-box id="box" position="0.09105 0.54442 -3.95698" color="#FFC65D"></a-box>
+    <a-plane id="stage" position="0 0 -3.84825" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+    <a-sky color="#ECECEC"></a-sky>
+  </a-scene>
+</body>"
+</html>
