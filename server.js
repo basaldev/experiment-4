@@ -11,9 +11,13 @@ app.use('/', express.static( __dirname + '/static'));
 
 io.on('connection', function(socket) {
   console.log('a user connected');
-  socket.on('remote', function(channel, data) {
-    socket.broadcast.emit('main', channel, data);
-    // console.log('##', data);
+
+  socket.on('remote', function(channel, data1, data2) {
+    socket.broadcast.emit('main', channel, data1, data2);
+  });
+
+  socket.on('reload', function() {
+    socket.broadcast.emit('reload');
   });
 });
 

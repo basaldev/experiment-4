@@ -3,7 +3,7 @@ function main(socket) {
 
   function handleOrientation(event) {
     var $console = document.getElementById('console1'); 
-    var alpha = event.alpha > 180 ? -(event.alpha - 360) : -event.alpha;
+    var alpha = event.alpha > 270 ? -(event.alpha - 360) : -event.alpha;
     var beta = event.beta;
     var gamma = -event.gamma;
     $console.innerHTML = `
@@ -12,7 +12,7 @@ function main(socket) {
       beta: ${beta}<br>
       gamma: ${gamma}<br>
     `;
-    socket.emit('remote', channel, { x:alpha, y:gamma, z:beta });
+    socket.emit('remote', channel, { x: alpha, y: beta, z: gamma }, { x: alpha, y: beta, z: gamma });
   }
 
   $reload = document.getElementById('reload');
@@ -41,4 +41,8 @@ var socket = io();
 
 socket.on('connect', function() {
   main(socket);
+
+  socket.on('reload', function() {
+    location.reload();
+  });
 });
