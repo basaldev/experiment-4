@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     prevPosition = {};
     prevRotation = {};
     step = 0;
-    console.log(initPosition, initRotation)
+
     $left.setAttribute('position', initPosition[0]);
     $left.setAttribute('rotation', initRotation[0]);
     $right.setAttribute('position', initPosition[1]);
