@@ -30,8 +30,9 @@ io.on('connection', function(socket) {
     socket.broadcast.emit('device-ready', channel);
   });
 
-  socket.on('reload', function() {
-    socket.broadcast.emit('reload');
+  socket.on('controller-reseted', function() {
+    console.log('controller reseted');
+    socket.broadcast.emit('reset');
   });
 });
 

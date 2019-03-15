@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "PORT=3000 nodemon index.js",
-    "watch": "aframe-watcher static/index.html",
+    "watch": "aframe-watcher static/main/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

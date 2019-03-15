@@ -47,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   function reset() {
-    // socket.emit('reload');
     prevPosition = {};
     prevRotation = {};
     step = 0;
@@ -56,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $left.setAttribute('rotation', initRotation[0]);
     $right.setAttribute('position', initPosition[1]);
     $right.setAttribute('rotation', initRotation[1]);
-    $message.setAttribute('value', 'Hold the affected area with left hand')
+    $message.setAttribute('value', 'Hold the affected area with left hand');
   }
 
   function main(channel, remote1, remote2) {
@@ -120,15 +119,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
       sendCameraRotation = function(rotation) {
         socket.emit('camera-rotation', rotation);
       };
+
+      $reload.addEventListener('click', function() {
+        reset();
+        socket.emit('controller-reseted');
+      });
     } else {
       socket.on('monitor', function(rotation) {
         var moment = 50;
         $rig.setAttribute('rotation', { x: rotation._x * moment, y: rotation._y * moment, z: rotation._z * moment });
       });
-    }
 
-    $reload.addEventListener('click', function() {
-      reset();
-    });
+      socket.on('reset', function() {
+        reset();
+      });
+    }
   });
 });
