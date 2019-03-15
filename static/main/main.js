@@ -18,8 +18,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     'Put the scalpel to the affected area with right hand.',
     'You passed this test!'
   ];
-  var sound = new Howl({
-    src: ['assets/se.wav']
+  var sound1 = new Howl({
+    src: ['assets/transition.wav']
+  });
+
+  var sound2 = new Howl({
+    src: ['assets/decision.mp3']
   });
   
   var $rig = document.getElementById('rig');
@@ -52,7 +56,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
     }
     $message.setAttribute('value', messages[step]);
-    sound.play();
+    if (step === messages.length - 1) {
+      sound2.play();
+    } else {
+      sound1.play();
+    }
   }
 
   function reset() {
@@ -65,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $right.setAttribute('position', initPosition[1]);
     $right.setAttribute('rotation', initRotation[1]);
     $message.setAttribute('value', 'Hold the affected area with left hand');
-    sound.play();
+    sound1.play();
   }
 
   function main(channel, remote1, remote2) {
