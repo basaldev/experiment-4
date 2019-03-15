@@ -18,6 +18,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     'Put the scalpel to the affected area with right hand.',
     'You passed this test!'
   ];
+  var sound = new Howl({
+    src: ['assets/se.wav']
+  });
+  
   var $rig = document.getElementById('rig');
   var $camera = document.getElementById('camera');
   var $cursor = document.getElementById('cursor');
@@ -37,13 +41,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
     { x: leftInitotation[0], y: leftInitotation[1], z: leftInitotation[2] },
     { x: rightInitotation[0], y: rightInitotation[1], z: rightInitotation[2] },
   ];
-  function transition() {
-    if (step < messages.length - 1) {
-      step++;
+  function transition(nextStep) {
+    if (nextStep) {
+      step = nextStep;
     } else {
-      step = 0;
+      if (step < messages.length - 1) {
+        step++;
+      } else {
+        step = 0;
+      }
     }
     $message.setAttribute('value', messages[step]);
+    sound.play();
   }
 
   function reset() {
@@ -56,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $right.setAttribute('position', initPosition[1]);
     $right.setAttribute('rotation', initRotation[1]);
     $message.setAttribute('value', 'Hold the affected area with left hand');
+    sound.play();
   }
 
   function main(channel, remote1, remote2) {
@@ -84,14 +94,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   var sendCameraRotation = function() {};
+  var sendTransition = function() {};
 
   AFRAME.registerComponent('collider-check', {
     dependencies: ['raycaster'],
     init: function () {
       this.el.addEventListener('raycaster-intersection', function(e) {
-        if (targets[step] && targets[step] === e.target.id) {
-          transition(e.target);
-        }
+        sendTransition(e);
       });
     }
   });
@@ -120,6 +129,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         socket.emit('camera-rotation', rotation);
       };
 
+      sendTransition = function(e) {
+        if (targets[step] && e.target && targets[step] === e.target.id) {
+          transition();
+          socket.emit('transition', step);
+        }
+      };
+
       $reload.addEventListener('click', function() {
         reset();
         socket.emit('controller-reseted');
@@ -132,6 +148,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       socket.on('reset', function() {
         reset();
+      });
+
+      socket.on('transition', function(nextStep) {
+        transition(nextStep);
       });
     }
   });

@@ -20,6 +20,10 @@ io.on('connection', function(socket) {
     socket.broadcast.emit('main', channel, data1, data2);
   });
 
+  socket.on('transition', function(nextStep) {
+    socket.broadcast.emit('transition', nextStep);
+  });
+
   socket.on('vr-loaded', function() {
     console.log('vr connected');
     socket.broadcast.emit('device-ready', 'vr');

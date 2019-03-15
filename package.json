@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "PORT=3000 nodemon index.js",
+    "start": "node index.js",
+    "dev": "PORT=3000 nodemon --delay 1 index.js",
     "watch": "aframe-watcher static/main/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
