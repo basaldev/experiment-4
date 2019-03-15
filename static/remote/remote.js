@@ -8,11 +8,13 @@ var $title = document.querySelector('title');
 var $heading = document.querySelector('h1');
 var $console = document.getElementById('console'); 
 var $reset= document.getElementById('reset');
+var $instraction = document.getElementById('instruction-' + channel);
 $title.innerText = channel + ' controller';
 $heading.innerText = channel + ' controller';
 $reset.addEventListener('click', function() {
   location.reload();
 });
+$instraction.classList.add('show');
 
 function main(socket) {
   function handleOrientation(event) {

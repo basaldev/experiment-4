@@ -1,14 +1,54 @@
 body {
   margin: 0;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
+  /* height: 100vh;
+  width: 100vw; */
+  /* overflow: hidden; */
 }
 
 button {
   display: block;
-  width: 100%;
-  margin: 10px 0;
+  width: 80%;
+  margin: 10px auto;
   padding: 10px;
   font-size: 30px;
+}
+
+.instruction {
+  display: none;
+}
+
+.angle {
+  color: #999;
+  font-size: 30px;
+  text-align: center;
+}
+
+.front:before {
+  content: "▲";
+  display: block;
+}
+
+.up {
+  display: inline-block;
+  width: 40%;
+}
+.up:before {
+  content: "◀︎";
+}
+
+.down {
+  display: inline-block;
+  width: 40%;
+}
+.down:after {
+  content: "▶︎";
+}
+
+.own:after {
+  content: "▼";
+  display: block;
+}
+
+.show {
+  display: block;
 }
