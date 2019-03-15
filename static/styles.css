@@ -1,7 +1,20 @@
-#reload {
-  transition: all ease 1s;
+body {
+  text-align: center;
 }
 
-.active {
-  transform: scale(2);
+.error {
+  color: red;
+}
+
+.success {
+  color: blue;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.column {
+  margin: 30px;
 }

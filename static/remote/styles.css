@@ -5,23 +5,10 @@ body {
   overflow: hidden;
 }
 
-
-.console {
-  position: relative;
-}
-
 button {
   display: block;
   width: 100%;
   margin: 10px 0;
   padding: 10px;
   font-size: 30px;
-}
-
-.active {
-  background: yellow;
-}
-
-.large {
-  height: 50px;
 }

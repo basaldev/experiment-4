@@ -1,0 +1,7 @@
+#reload {
+  transition: all ease 1s;
+}
+
+.active {
+  transform: scale(2);
+}

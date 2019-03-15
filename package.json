@@ -2,9 +2,9 @@
   "name": "boston",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "PORT=3000 nodemon index.js",
     "watch": "aframe-watcher static/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

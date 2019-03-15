@@ -1,8 +1,21 @@
-function main(socket) {
-  var channel = 'left';
+var socket = io();
+var params = location.search.slice(1).split('&').map(function(p) { return p.split('='); });
+var channel = (params.length > 0 && params[0] && params[0][0] !== '')
+  ? params.find(function(e) { return e[0] === 'channel' })[1]
+  : 'left';
 
+var $title = document.querySelector('title');
+var $heading = document.querySelector('h1');
+var $console = document.getElementById('console'); 
+var $reset= document.getElementById('reset');
+$title.innerText = channel + ' controller';
+$heading.innerText = channel + ' controller';
+$reset.addEventListener('click', function() {
+  location.reload();
+});
+
+function main(socket) {
   function handleOrientation(event) {
-    var $console = document.getElementById('console1'); 
     var alpha = event.alpha > 270 ? -(event.alpha - 360) : -event.alpha;
     var beta = event.beta;
     var gamma = -event.gamma;
@@ -15,32 +28,13 @@ function main(socket) {
     socket.emit('remote', channel, { x: alpha, y: beta, z: gamma }, { x: alpha, y: beta, z: gamma });
   }
 
-  $reload = document.getElementById('reload');
-  $left = document.getElementById('left');
-  $right = document.getElementById('right');
-
-  $reload.addEventListener('click', function() {
-    location.reload();
-  });
-  $left.addEventListener('click', function() {
-    $active = document.querySelector('.active');
-    $active.classList.remove('active');
-    $left.classList.add('active');
-    channel = 'left';
-  });
-  $right.addEventListener('click', function() {
-    $active = document.querySelector('.active');
-    $active.classList.remove('active');
-    $right.classList.add('active');
-    channel = 'right';
-  });
   window.addEventListener("deviceorientation", handleOrientation, true);
 }
 
-var socket = io();
-
 socket.on('connect', function() {
   main(socket);
+
+  socket.emit('controller-loaded', channel);
 
   socket.on('reload', function() {
     location.reload();
