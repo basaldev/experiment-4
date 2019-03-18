@@ -1,16 +1,29 @@
 body {
   margin: 0;
-  /* height: 100vh;
-  width: 100vw; */
-  /* overflow: hidden; */
+  font-family: sans-serif;
+  text-align: center;
+  color: #003c71;
+}
+
+h1 {
+  background: #003c71;
+  color: #fff;
+  padding: 20px;
+  margin: 0 0 60px 0;
+  font-size: 40px;
+  font-weight: normal;
+  text-transform: capitalize;
 }
 
 button {
   display: block;
   width: 80%;
-  margin: 10px auto;
-  padding: 10px;
+  margin: 10px auto 50px;
+  padding: 40px;
   font-size: 30px;
+  background: #0083C5;
+  color: #fff;
+  border: none;
 }
 
 .instruction {
@@ -23,6 +36,9 @@ button {
   text-align: center;
 }
 
+.front {
+  margin-bottom: 30px;
+}
 .front:before {
   content: "▲";
   display: block;
@@ -44,6 +60,9 @@ button {
   content: "▶︎";
 }
 
+.own {
+  margin-top: 30px;
+}
 .own:after {
   content: "▼";
   display: block;

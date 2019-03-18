@@ -8,29 +8,29 @@
   <title>Setup VR</title>
 </head>
 <body>
-  <h1>Setup VR</h1>
-
-  <p>Please prepare 3 smartphones for vr monitor and hand controllers</p>
+  <h1>How to setup VR</h1>
+  <p>1. Please prepare 3 smartphones for VR monitor and hand controllers.</p>
+  <p>2. Please read QR code to connect to the server on each device.</p>
 
   <div class="container">
     <div class="column">
-      <h2>1. Prepare VR monitor</h2>
+      <h2>VR monitor</h2>
+      <p id="vrQr" class="qrcode"></p>
       <p id="vrUrl">main?channel=vr</p>
-      <p id="vrQr"></p>
       <p id="vrState" class="error">Not connected</p>
     </div>
 
     <div class="column">
-      <h2>2. Prepare left controller</h2>
+      <h2>Left hand controller</h2>
+      <p id="leftQr" class="qrcode"></p>
       <p id="leftUrl">remote?channel=left</p>
-      <p id="leftQr"></p>
       <p id="leftState" class="error">Not connected</p>
     </div>
 
     <div class="column">
-      <h2>3. Prepare right controller</h2>
+      <h2>Right hand controller</h2>
+      <p id="rightQr" class="qrcode"></p>
       <p id="rightUrl">remote?channel=right</p>
-      <p id="rightQr"></p>
       <p id="rightState" class="error">Not connected</p>
     </div>
   </div>
