@@ -19,6 +19,26 @@
   }
 }
 
+#app {
+  display: block;
+}
+
+#app-vertical {
+  display: none;
+}
+
+@media screen and (orientation: portrait) and (max-device-width: 768px) {
+  #app {
+    display: none;
+  }
+  #app-vertical {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+  }
+}
+
 .qrcode {
   background: #f7f7f7;
   padding: 40px 0;
@@ -81,6 +101,12 @@ h1 {
 .container {
   display: flex;
   justify-content: center;
+}
+@media only screen and (min-width: 900px) {
+  .container {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 img {

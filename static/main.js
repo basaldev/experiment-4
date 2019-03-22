@@ -1,3 +1,10 @@
+var isMobile = /Mobile/.test(navigator.userAgent);
+
+Array.from(document.querySelectorAll(isMobile ? '.desktop' : '.mobile'))
+  .forEach(function(el) {
+    el.style.display = 'none';
+  });
+
 var $vrUrl = document.getElementById('vrUrl');
 var vrUrl = location.href + $vrUrl.innerText;
 $vrUrl.innerText = vrUrl;
@@ -14,11 +21,16 @@ $rightUrl.innerText = rightUrl;
 new QRCode(document.getElementById('rightQr'), { text: rightUrl, width: 200, height: 200, correctLevel : QRCode.CorrectLevel.H });
 
 var socket = io();
-var state = {
-  vr: false,
-  left: false,
-  right: false
-};
+var state = isMobile
+  ? {
+    left: false,
+    right: false
+  }
+  : {
+    vr: false,
+    left: false,
+    right: false
+  };
 
 socket.on('connect', function() {
   socket.on('device-ready', function(channel) {
@@ -33,7 +45,7 @@ socket.on('connect', function() {
     $state.classList.add('success');
     state[channel] = true;
     if (!Object.values(state).includes(false)) {
-      location.href = 'main';
+      location.href = isMobile ? 'main?channel=vr' : 'main';
     }
   });
 });
